@@ -29,6 +29,10 @@ Version 0.0.1
 
 `disconnect`: function(success, error)
 
+## Try a sample
+
+[https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample](https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample)
+
 ## Installation
 
 ### Add plugin in cordova app
@@ -46,3 +50,4 @@ var error = function(message) { alert("Error"); };
 Wifi.connectWifi("wifispot", "megapass", success, error);
 Wifi.connectWifiOpen("wifiopen", success, error);
 ```
+
