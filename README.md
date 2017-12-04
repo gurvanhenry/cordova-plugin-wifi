@@ -18,13 +18,13 @@ Version 0.0.1
 
 `setWifiEnabled`: function(/* boolean */ enabled, success, error)
 
-// search avalaible wifi network
+// search avalaible wifi network<br>
 /* List<ScanResult> */ `scanWifi`: function(success, error) 
     
-// return SSID and ohter informations of active connection
+// return SSID and ohter informations of active connection<br>
 /* WifiInfo */ `getConnectionInfo`: function(success, error)
 
-// return list of all the networks configured
+// return list of all the networks configured<br>
 `getConfiguredNetworks`: function(success, error)
 
 `disconnect`: function(success, error)
