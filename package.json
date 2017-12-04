@@ -1,0 +1,18 @@
+{
+  "name": "cordova-plugin-wifi",
+  "version": "0.0.1",
+  "description": "Manage wifi on your device",
+  "cordova": {
+    "id": "cordova-plugin-wifi",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "plugin",
+    "wifi"
+  ],
+  "author": "Gurvan Henry",
+  "license": "MIT"
+}
