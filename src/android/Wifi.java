@@ -33,6 +33,10 @@ public class Wifi extends CordovaPlugin {
         } else if (action.equals("isWifiEnabled")) {
             this.executeIsWifiEnabled(callbackContext);
             return true;
+        } else if (action.equals("setWifiEnabled")) {
+            boolean enabled = args.getBoolean(0);
+            this.executeSetWifiEnabled(enabled, callbackContext);
+            return true;
         } else if (action.equals("successTestMethod")) {
             this.successTestMethod(callbackContext);
             return true;
@@ -55,15 +59,21 @@ public class Wifi extends CordovaPlugin {
     }
 
     private void executeConnectWifi(String ssid, String pass, CallbackContext callbackContext) {
-        Log.v(TAG, "====== executeConnectWifi ======");
+        Log.v(TAG, "====== executeConnectWifi ====== ssid=" + ssid + " pass=" + pass);
         this.connectWifi(ssid, pass);
         callbackContext.success();
     }
-    
+
     private void executeIsWifiEnabled(CallbackContext callbackContext) {
         Log.v(TAG, "====== executeIsWifiEnabled ======");
         boolean wifiEnabled = this.isWifiEnabled();
         callbackContext.sendPluginResult(new PluginResult(Status.OK, wifiEnabled));
+    }
+    
+    private void executeSetWifiEnabled(boolean enabled, CallbackContext callbackContext) {
+        Log.v(TAG, "====== executeSetWifiEnabled ====== enabled=" + enabled);
+        this.setWifiEnable(enabled);
+        callbackContext.success();
     }
 
     /**
@@ -93,8 +103,14 @@ public class Wifi extends CordovaPlugin {
         wifiManager.reconnect();
     }
 
-    public boolean isWifiEnabled() {
+    private boolean isWifiEnabled() {
         WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
         return wifiManager.isWifiEnabled();
     }
+
+    private void setWifiEnable(boolean enabled) {
+        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        wifiManager.setWifiEnabled(enabled);
+    }
+    
 }

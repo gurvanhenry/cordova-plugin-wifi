@@ -16,13 +16,15 @@ var Wifi = {
         return exec(success, error, 'Wifi', 'isWifiEnabled', []);
     },
 
+    setWifiEnabled: function(enabled, success, error) {
+        return exec(success, error, 'Wifi', 'setWifiEnabled', [enabled]);        
+    },
+
 
     // In developpement methods:
 
     /* string */ getMacAddress: function(success, error) { },
-    
-    setWifiEnabled: function(/* boolean */ enabled, success, error) { },
-    
+        
     // search avalaible wifi network
     /* List<ScanResult> */ scanWifi: function(success, error) { }, 
     
