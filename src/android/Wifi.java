@@ -7,6 +7,8 @@ import android.util.Log;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
+import org.apache.cordova.PluginResult.Status;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,8 +30,10 @@ public class Wifi extends CordovaPlugin {
             String ssid = args.getString(0);
             this.executeConnectWifi(ssid, null, callbackContext);
             return true;
-        }
-        else if (action.equals("successTestMethod")) {
+        } else if (action.equals("isWifiEnabled")) {
+            this.executeIsWifiEnabled(callbackContext);
+            return true;
+        } else if (action.equals("successTestMethod")) {
             this.successTestMethod(callbackContext);
             return true;
         }
@@ -54,6 +58,12 @@ public class Wifi extends CordovaPlugin {
         Log.v(TAG, "====== executeConnectWifi ======");
         this.connectWifi(ssid, pass);
         callbackContext.success();
+    }
+    
+    private void executeIsWifiEnabled(CallbackContext callbackContext) {
+        Log.v(TAG, "====== executeIsWifiEnabled ======");
+        boolean wifiEnabled = this.isWifiEnabled();
+        callbackContext.sendPluginResult(new PluginResult(Status.OK, wifiEnabled));
     }
 
     /**
@@ -81,5 +91,10 @@ public class Wifi extends CordovaPlugin {
         wifiManager.disconnect();
         wifiManager.enableNetwork(networkID, true);
         wifiManager.reconnect();
+    }
+
+    public boolean isWifiEnabled() {
+        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        return wifiManager.isWifiEnabled();
     }
 }

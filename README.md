@@ -1,6 +1,6 @@
 # cordova-plugin-wifi
 
-Version 0.0.1
+Version 0.2.0
 
 ## API
 
@@ -9,6 +9,8 @@ Version 0.0.1
 `connectWifi`: function(ssid, pass, success, error)
 
 `connectWifiOpen`: function(ssid, success, error)
+
+/* boolean */ `isWifiEnabled`: function(success, error)
 
 ### In developpement methods
 

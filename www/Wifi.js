@@ -11,11 +11,13 @@ var Wifi = {
     connectWifiOpen: function(ssid, success, error) {
         return exec(success, error, 'Wifi', 'connectWifiOpen', [ssid]);
     },
+    
+    /* boolean */ isWifiEnabled: function(success, error) {
+        return exec(success, error, 'Wifi', 'isWifiEnabled', []);
+    },
 
 
     // In developpement methods:
-
-    /* boolean */ isWifiEnabled: function(success, error) { },
 
     /* string */ getMacAddress: function(success, error) { },
     
