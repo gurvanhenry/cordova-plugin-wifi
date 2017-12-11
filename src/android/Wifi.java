@@ -2,6 +2,7 @@ package com.gurvanhenry.cordova;
 
 import android.content.Context;
 import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
@@ -37,7 +38,12 @@ public class Wifi extends CordovaPlugin {
             boolean enabled = args.getBoolean(0);
             this.executeSetWifiEnabled(enabled, callbackContext);
             return true;
-        } else if (action.equals("successTestMethod")) {
+        } else if (action.equals("getMacAddress")) {
+            this.executeGetMacAddress(callbackContext);
+            return true;
+        } 
+        // Test methods:
+        else if (action.equals("successTestMethod")) {
             this.successTestMethod(callbackContext);
             return true;
         }
@@ -76,6 +82,12 @@ public class Wifi extends CordovaPlugin {
         callbackContext.success();
     }
 
+    private void executeGetMacAddress(CallbackContext callbackContext) {
+        Log.v(TAG, "====== executeGetMacAddress ======");
+        String macAddress = this.getMacAddress();
+        callbackContext.sendPluginResult(new PluginResult(Status.OK, macAddress));
+    }
+
     /**
      * If networkPass == null => open wifi
      * else (networkPass != null) => secured wifi (WPA ...)
@@ -111,6 +123,12 @@ public class Wifi extends CordovaPlugin {
     private void setWifiEnable(boolean enabled) {
         WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
         wifiManager.setWifiEnabled(enabled);
+    }
+    
+    private String getMacAddress() {
+        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo info = wifiManager.getConnectionInfo();
+        return info.getMacAddress();
     }
     
 }

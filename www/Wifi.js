@@ -20,10 +20,11 @@ var Wifi = {
         return exec(success, error, 'Wifi', 'setWifiEnabled', [enabled]);        
     },
 
+    /* string */ getMacAddress: function(success, error) {
+        return exec(success, error, 'Wifi', 'getMacAddress', []);        
+    },
 
     // In developpement methods:
-
-    /* string */ getMacAddress: function(success, error) { },
         
     // search avalaible wifi network
     /* List<ScanResult> */ scanWifi: function(success, error) { }, 
