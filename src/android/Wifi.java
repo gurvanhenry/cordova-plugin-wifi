@@ -6,6 +6,10 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 
+import java.net.NetworkInterface;
+import java.util.Collections;
+import java.util.List;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.PluginResult;
@@ -124,11 +128,57 @@ public class Wifi extends CordovaPlugin {
         WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
         wifiManager.setWifiEnabled(enabled);
     }
-    
+
+    final String DEFAULT_MAC_ADDRESS = "02:00:00:00:00:00";
+
     private String getMacAddress() {
+        // sol1:
+        String macAddress = this.getMacAddress_sol1();
+        // sol1 failed, try sol2:
+        if(macAddress.equals(DEFAULT_MAC_ADDRESS)) {
+            macAddress = this.getMacAddress_sol2();
+        }
+        return macAddress;
+    }
+    
+    /**
+     * Do not work anymore on Android >= 6
+     */
+    private String getMacAddress_sol1() {
         WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
         WifiInfo info = wifiManager.getConnectionInfo();
         return info.getMacAddress();
+    }
+
+    /**
+     * Workaround for Android 6
+     * Need android.permission.INTERNET
+     */
+    private String getMacAddress_sol2() {
+        try {
+            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface nif : all) {
+                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
+
+                byte[] macBytes = nif.getHardwareAddress();
+                if (macBytes == null) {
+                    return "";
+                }
+
+                StringBuilder res1 = new StringBuilder();
+                for (byte b : macBytes) {
+                    res1.append(String.format("%02X:", b));
+                }
+
+                if (res1.length() > 0) {
+                    res1.deleteCharAt(res1.length() - 1);
+                }
+                return res1.toString();
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return DEFAULT_MAC_ADDRESS;
     }
     
 }

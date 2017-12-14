@@ -29,13 +29,6 @@ Version 0.3.0
 **NOT IMPLEMENTED**<br>
 `disconnect`: function(success, error)
 
-## Notes
-
-- `getMacAddress` won't work on Android >= 6.0
-  - on Android >= the result will be "02:00:00:00:00:00"
-  - for security reason Android change the rules: [see API changes](https://developer.android.com/about/versions/marshmallow/android-6.0-changes.html#behavior-hardware-id)
-  - I'll try to find a workaround
-
 ## Try a sample
 
 [https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample](https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample)
@@ -57,4 +50,3 @@ var error = function(message) { alert("Error"); };
 Wifi.connectWifi("wifispot", "megapass", success, error);
 Wifi.connectWifiOpen("wifiopen", success, error);
 ```
-
