@@ -17,17 +17,18 @@ var Wifi = {
     },
 
     setWifiEnabled: function(enabled, success, error) {
-        return exec(success, error, 'Wifi', 'setWifiEnabled', [enabled]);        
+        return exec(success, error, 'Wifi', 'setWifiEnabled', [enabled]);
     },
 
     /* string */ getMacAddress: function(success, error) {
-        return exec(success, error, 'Wifi', 'getMacAddress', []);        
+        return exec(success, error, 'Wifi', 'getMacAddress', []);
     },
+    
+    /* ??? */ listWifiNetworks: function(success, error) {
+        return exec(success, error, 'Wifi', 'listWifiNetworks', []);
+    }, 
 
     // In developpement methods:
-        
-    // search avalaible wifi network
-    /* List<ScanResult> */ scanWifi: function(success, error) { }, 
     
     // return SSID and ohter informations of active connection
     /* WifiInfo */ getConnectionInfo: function(success, error) { },

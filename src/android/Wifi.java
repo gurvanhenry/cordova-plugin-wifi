@@ -45,7 +45,10 @@ public class Wifi extends CordovaPlugin {
         } else if (action.equals("getMacAddress")) {
             this.executeGetMacAddress(callbackContext);
             return true;
-        } 
+        } else if (action.equals("listWifiNetworks")) {
+            this.executeListWifiNetworks(callbackContext);
+            return true;
+        }  
         // Test methods:
         else if (action.equals("successTestMethod")) {
             this.successTestMethod(callbackContext);
@@ -90,6 +93,12 @@ public class Wifi extends CordovaPlugin {
         Log.v(TAG, "====== executeGetMacAddress ======");
         String macAddress = this.getMacAddress();
         callbackContext.sendPluginResult(new PluginResult(Status.OK, macAddress));
+    }
+    
+    private void executeListWifiNetworks(CallbackContext callbackContext) {
+        Log.v(TAG, "====== executeListWifiNetworks ======");
+        //this.listWifiNetworks();
+        callbackContext.sendPluginResult(new PluginResult(Status.OK, "aa -- bb"));
     }
 
     /**
