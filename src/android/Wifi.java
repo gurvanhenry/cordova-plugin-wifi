@@ -49,13 +49,19 @@ public class Wifi extends CordovaPlugin {
             boolean enabled = args.getBoolean(0);
             this.executeSetWifiEnabled(enabled, callbackContext);
             return true;
-        } else if (action.equals("getMacAddress")) {
+        } else if (action.equals("isWifiConnected")) {
+            this.executeIsWifiConnected(callbackContext);
+            return true;
+        } else if (action.equals("getCurrentSSID")) {
+            this.executeGetCurrentSSID(callbackContext);
+            return true;
+        }  else if (action.equals("getMacAddress")) {
             this.executeGetMacAddress(callbackContext);
             return true;
         } else if (action.equals("listWifiNetworks")) {
             this.executeListWifiNetworks(callbackContext);
             return true;
-        } 
+        }
         return false;
     }
 
@@ -75,6 +81,18 @@ public class Wifi extends CordovaPlugin {
         Log.v(TAG, "====== executeSetWifiEnabled ====== enabled=" + enabled);
         this.setWifiEnable(enabled);
         callbackContext.success();
+    }
+    
+    private void executeIsWifiConnected(CallbackContext callbackContext) {
+        Log.v(TAG, "====== executeIsWifiConnected ======");
+        boolean wifiConnected = this.isWifiConnected();
+        callbackContext.sendPluginResult(new PluginResult(Status.OK, wifiConnected));
+    }
+    
+    private void executeGetCurrentSSID(CallbackContext callbackContext) {
+        Log.v(TAG, "====== executeGetCurrentSSID ======");
+        String ssid = this.getCurrentSSID();
+        callbackContext.sendPluginResult(new PluginResult(Status.OK, ssid));
     }
 
     private void executeGetMacAddress(CallbackContext callbackContext) {
@@ -129,6 +147,12 @@ public class Wifi extends CordovaPlugin {
         wifiManager.setWifiEnabled(enabled);
     }
 
+    private String getCurrentSSID() {
+        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        return wifiInfo.getSSID();
+    }
+
     final String DEFAULT_MAC_ADDRESS = "02:00:00:00:00:00";
 
     private String getMacAddress() {
@@ -146,8 +170,8 @@ public class Wifi extends CordovaPlugin {
      */
     private String getMacAddress_sol1() {
         WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo info = wifiManager.getConnectionInfo();
-        return info.getMacAddress();
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        return wifiInfo.getMacAddress();
     }
 
     /**
@@ -241,6 +265,20 @@ public class Wifi extends CordovaPlugin {
         }, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
 
         wifiManager.startScan();
+    }
+    
+    private boolean isWifiConnected() {
+        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        if (wifiManager.isWifiEnabled()) { // Wi-Fi adapter is ON
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            if( wifiInfo.getNetworkId() == -1 ){
+                return false; // Not connected to an access point
+            }
+            return true; // Connected to an access point
+        }
+        else {
+            return false; // Wi-Fi adapter is OFF
+        }
     }
     
 }
