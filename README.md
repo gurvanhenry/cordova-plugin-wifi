@@ -12,9 +12,15 @@ Version 0.3.0
 
 `setWifiEnabled`: function(enabled, success, error)
 
+/* boolean */ `isWifiConnected`: function(success, error)
+
+/* string */ `getCurrentSSID`: function(success, error)
+
 /* string */ `getMacAddress`: function(success, error)
 
 /* Array\<Object\> */ `listWifiNetworks`: function(success, error)
+
+/* Array\<string\> */ `getConfiguredNetworks`: function(success, error)
 
 ## Installation
 
@@ -55,9 +61,3 @@ Wifi.getMacAddress(this.success, this.error);
 
 - `listWifiNetworks` permission issue
   - Since Android 6 (again) `ACCESS_COARSE_LOCATION` location permission as to be asked on runtime (popup)
-
-## Futur development
-
-Other methods can be added (`getConnectionInfo`, `disconnect` ... )
-
-Check [www/Wifi.js](www/Wifi.js) for more details
