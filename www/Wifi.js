@@ -17,6 +17,14 @@ var Wifi = {
     setWifiEnabled: function(enabled, success, error) {
         return exec(success, error, 'Wifi', 'setWifiEnabled', [enabled]);
     },
+    
+    /* boolean */ isWifiConnected: function(success, error) {
+        return exec(success, error, 'Wifi', 'isWifiConnected', []);
+    },
+    
+    /* string */ getCurrentSSID: function(success, error) {
+        return exec(success, error, 'Wifi', 'getCurrentSSID', []);
+    },
 
     /* string */ getMacAddress: function(success, error) {
         return exec(success, error, 'Wifi', 'getMacAddress', []);
@@ -24,21 +32,12 @@ var Wifi = {
     
     /* Array<Object> */ listWifiNetworks: function(success, error) {
         return exec(success, error, 'Wifi', 'listWifiNetworks', []);
-    }, 
-
-    // Futur developpement:
+    },
     
-    // return SSID and ohter informations of active connection
-    ///* WifiInfo */ getConnectionInfo: function(success, error) { },
+    /* Array<string> */ getConfiguredNetworks: function(success, error) {
+        return exec(success, error, 'Wifi', 'getConfiguredNetworks', []);
+    },
 
-    // return list of all the networks configured
-    //getConfiguredNetworks: function(success, error) { },
-
-    //disconnect: function(success, error) { },
-
-    //boolean isConnected
-    
-    //getCurrentWifi
 };
 
 module.exports = Wifi;
