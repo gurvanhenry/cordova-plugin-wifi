@@ -24,7 +24,7 @@ var Wifi = {
         return exec(success, error, 'Wifi', 'getMacAddress', []);
     },
     
-    /* ??? */ listWifiNetworks: function(success, error) {
+    /* Array<Object> */ listWifiNetworks: function(success, error) {
         return exec(success, error, 'Wifi', 'listWifiNetworks', []);
     }, 
 
