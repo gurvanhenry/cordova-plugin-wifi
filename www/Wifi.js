@@ -2,8 +2,6 @@ var exec = require('cordova/exec');
 
 var Wifi = {
 
-    // Working methods:
-
     connectWifi: function(ssid, pass, success, error) {
         return exec(success, error, 'Wifi', 'connectWifi', [ssid, pass]);
     },
@@ -28,33 +26,19 @@ var Wifi = {
         return exec(success, error, 'Wifi', 'listWifiNetworks', []);
     }, 
 
-    // In developpement methods:
+    // Futur developpement:
     
     // return SSID and ohter informations of active connection
-    /* WifiInfo */ getConnectionInfo: function(success, error) { },
+    ///* WifiInfo */ getConnectionInfo: function(success, error) { },
 
     // return list of all the networks configured
-    getConfiguredNetworks: function(success, error) { },
+    //getConfiguredNetworks: function(success, error) { },
 
-    disconnect: function(success, error) { },
+    //disconnect: function(success, error) { },
 
-    // ask for other wifi needs...
-    
-    
-    // maybe : 
     //boolean isConnected
+    
     //getCurrentWifi
-
-
-    // Temporary test methods:
-
-    successTestMethod: function(success, error) {
-        return exec(success, error, 'Wifi', 'successTestMethod', []);
-    },
-
-    errorTestMethod: function(success, error) {
-        return exec(success, error, 'Wifi', 'errorTestMethod', []);
-    },
 };
 
 module.exports = Wifi;

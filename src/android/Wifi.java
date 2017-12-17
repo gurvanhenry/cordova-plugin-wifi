@@ -55,27 +55,8 @@ public class Wifi extends CordovaPlugin {
         } else if (action.equals("listWifiNetworks")) {
             this.executeListWifiNetworks(callbackContext);
             return true;
-        }  
-        // Test methods:
-        else if (action.equals("successTestMethod")) {
-            this.successTestMethod(callbackContext);
-            return true;
-        }
-        else if (action.equals("errorTestMethod")) {
-            this.errorTestMethod(callbackContext);
-            return true;
-        }
+        } 
         return false;
-    }
-    
-    private void successTestMethod(CallbackContext callbackContext) {
-        Log.v(TAG, "====== successTestMethod ======");
-        callbackContext.success("=> success callback");
-    }
-
-    private void errorTestMethod(CallbackContext callbackContext) {
-        Log.v(TAG, "====== errorTestMethod ======");
-        callbackContext.error("/!\\ ERROR callback /!\\");
     }
 
     private void executeConnectWifi(String ssid, String pass, CallbackContext callbackContext) {

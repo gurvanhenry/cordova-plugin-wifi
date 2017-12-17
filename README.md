@@ -14,20 +14,8 @@ Version 0.3.0
 
 /* string */ `getMacAddress`: function(success, error)
 
-**NOT IMPLEMENTED**<br>
 // search avalaible wifi network<br>
 /* Array\<Object\> */ `listWifiNetworks`: function(success, error)
-
-**NOT IMPLEMENTED**<br>
-// return SSID and ohter informations of active connection<br>
-/* WifiInfo */ `getConnectionInfo`: function(success, error)
-
-**NOT IMPLEMENTED**<br>
-// return list of all the networks configured<br>
-`getConfiguredNetworks`: function(success, error)
-
-**NOT IMPLEMENTED**<br>
-`disconnect`: function(success, error)
 
 ## Notes
 
@@ -66,3 +54,9 @@ var error = function(message) { alert("Error"); };
 Wifi.connectWifi("wifispot", "megapass", success, error);
 Wifi.connectWifiOpen("wifiopen", success, error);
 ```
+
+## Futur development
+
+Other methods can be added (`getConnectionInfo`, `disconnect` ... )
+
+Check [www/Wifi.js](www/Wifi.js) for more details
