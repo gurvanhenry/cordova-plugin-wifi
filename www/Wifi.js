@@ -34,10 +34,10 @@ var Wifi = {
         return exec(success, error, 'Wifi', 'listWifiNetworks', []);
     },
     
-    // return list of all the networks configured
-    //getConfiguredNetworks: function(success, error) { },
+    /* Array<string> */ getConfiguredNetworks: function(success, error) {
+        return exec(success, error, 'Wifi', 'getConfiguredNetworks', []);
+    },
 
-    //disconnect: function(success, error) { },
 };
 
 module.exports = Wifi;

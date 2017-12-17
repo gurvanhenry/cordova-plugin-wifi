@@ -61,6 +61,9 @@ public class Wifi extends CordovaPlugin {
         } else if (action.equals("listWifiNetworks")) {
             this.executeListWifiNetworks(callbackContext);
             return true;
+        } else if (action.equals("getConfiguredNetworks")) {
+            this.executeGetConfiguredNetworks(callbackContext);
+            return true;
         }
         return false;
     }
@@ -109,6 +112,12 @@ public class Wifi extends CordovaPlugin {
         this.listWifiNetworks();
         // result return when android send the result
     }
+    
+    private void executeGetConfiguredNetworks(CallbackContext callbackContext) {
+        Log.v(TAG, "====== executeGetConfiguredNetworks ======");
+        JSONArray networks = this.getConfiguredNetworks();
+        callbackContext.sendPluginResult(new PluginResult(Status.OK, networks));
+    }
 
     /**
      * If networkPass == null => open wifi
@@ -145,6 +154,20 @@ public class Wifi extends CordovaPlugin {
     private void setWifiEnable(boolean enabled) {
         WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
         wifiManager.setWifiEnabled(enabled);
+    }
+    
+    private boolean isWifiConnected() {
+        WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
+        if (wifiManager.isWifiEnabled()) { // Wi-Fi adapter is ON
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            if( wifiInfo.getNetworkId() == -1 ){
+                return false; // Not connected to an access point
+            }
+            return true; // Connected to an access point
+        }
+        else {
+            return false; // Wi-Fi adapter is OFF
+        }
     }
 
     private String getCurrentSSID() {
@@ -267,18 +290,16 @@ public class Wifi extends CordovaPlugin {
         wifiManager.startScan();
     }
     
-    private boolean isWifiConnected() {
+    private JSONArray getConfiguredNetworks() {
         WifiManager wifiManager = (WifiManager) this.cordova.getActivity().getSystemService(Context.WIFI_SERVICE);
-        if (wifiManager.isWifiEnabled()) { // Wi-Fi adapter is ON
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            if( wifiInfo.getNetworkId() == -1 ){
-                return false; // Not connected to an access point
+        List<WifiConfiguration> networks = wifiManager.getConfiguredNetworks();
+        JSONArray results = new JSONArray();
+        if(networks != null) {
+            for(WifiConfiguration wifiConfig : networks) {
+                results.put(wifiConfig.SSID);
             }
-            return true; // Connected to an access point
         }
-        else {
-            return false; // Wi-Fi adapter is OFF
-        }
+        return results;
     }
     
 }
