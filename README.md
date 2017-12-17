@@ -14,8 +14,31 @@ Version 0.3.0
 
 /* string */ `getMacAddress`: function(success, error)
 
-// search avalaible wifi network<br>
 /* Array\<Object\> */ `listWifiNetworks`: function(success, error)
+
+## Installation
+
+### Add plugin in cordova app
+
+```bash
+cordova plugin add https://gitlab.com/gurvanhenry/cordova-plugin-wifi
+```
+
+### Basic Usage
+
+```javascript
+var success = function(message) { alert(message); };
+var error = function(message) { alert("Error"); };
+
+Wifi.isWifiEnabled(this.success, this.error);
+Wifi.setWifiEnabled(true, this.success, this.error);
+Wifi.connectWifi("wifispot", "megapass", success, error);
+Wifi.getMacAddress(this.success, this.error);
+```
+
+## Check out more with this sample
+
+[https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample](https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample)
 
 ## Notes
 
@@ -32,28 +55,6 @@ Version 0.3.0
 
 - `listWifiNetworks` permission issue
   - Since Android 6 (again) `ACCESS_COARSE_LOCATION` location permission as to be asked on runtime (popup)
-
-## Try a sample
-
-[https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample](https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample)
-
-## Installation
-
-### Add plugin in cordova app
-
-```bash
-cordova plugin add https://gitlab.com/gurvanhenry/cordova-plugin-wifi
-```
-
-### Usage
-
-```javascript
-var success = function(message) { alert(message); };
-var error = function(message) { alert("Error"); };
-
-Wifi.connectWifi("wifispot", "megapass", success, error);
-Wifi.connectWifiOpen("wifiopen", success, error);
-```
 
 ## Futur development
 
