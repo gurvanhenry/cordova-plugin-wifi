@@ -16,7 +16,7 @@ Version 0.3.0
 
 **NOT IMPLEMENTED**<br>
 // search avalaible wifi network<br>
-/* List<ScanResult> */ `scanWifi`: function(success, error)
+/* Array\<Object\> */ `listWifiNetworks`: function(success, error)
 
 **NOT IMPLEMENTED**<br>
 // return SSID and ohter informations of active connection<br>
@@ -41,6 +41,9 @@ Version 0.3.0
   - Android 7 changed the rule again
     - DevicePolicyManager can be used [see API 7 changes](https://developer.android.com/about/versions/nougat/android-7.0-changes.html#afw)
     - this plugin do not handle that case
+
+- `listWifiNetworks` permission issue
+  - Since Android 6 (again) `ACCESS_COARSE_LOCATION` location permission as to be asked on runtime (popup)
 
 ## Try a sample
 
