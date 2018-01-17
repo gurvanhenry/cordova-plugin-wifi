@@ -1,6 +1,6 @@
 {
   "name": "com.gurvanhenry.cordova-plugin-wifi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Manage wifi on your device",
   "cordova": {
     "id": "com.gurvanhenry.cordova-plugin-wifi",
