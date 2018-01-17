@@ -27,7 +27,7 @@ Version 1.0.0
 ### Add plugin in cordova app
 
 ```bash
-cordova plugin add https://gitlab.com/gurvanhenry/cordova-plugin-wifi
+cordova plugin add com.gurvanhenry.cordova-plugin-wifi
 ```
 
 ### Basic Usage
