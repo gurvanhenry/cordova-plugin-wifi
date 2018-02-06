@@ -1,6 +1,6 @@
 {
   "name": "com.gurvanhenry.cordova-plugin-wifi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Manage wifi on your device",
   "cordova": {
     "id": "com.gurvanhenry.cordova-plugin-wifi",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gitlab.com/gurvanhenry/cordova-plugin-wifi.git"
+    "url": "https://github.com/gurvanhenry/cordova-plugin-wifi.git"
   },
   "keywords": [
     "ecosystem:cordova",
@@ -22,7 +22,7 @@
   "author": "Gurvan Henry gurvan.henry@gmail.com> (http://www.gurvanhenry.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://gitlab.com/gurvanhenry/cordova-plugin-wifi/issues"
+    "url": "https://github.com/gurvanhenry/cordova-plugin-wifi/issues"
   },
-  "homepage": "https://gitlab.com/gurvanhenry/cordova-plugin-wifi#README"
+  "homepage": "https://github.com/gurvanhenry/cordova-plugin-wifi#README"
 }
