@@ -44,7 +44,7 @@ Wifi.getMacAddress(this.success, this.error);
 
 ## Check out more with this sample
 
-[https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample](https://gitlab.com/gurvanhenry/cordova-plugin-wifi-sample)
+[https://github.com/gurvanhenry/cordova-plugin-wifi-sample](https://github.com/gurvanhenry/cordova-plugin-wifi-sample)
 
 ## Notes
 
